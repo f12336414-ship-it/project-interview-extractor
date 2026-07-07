@@ -1,0 +1,51 @@
+name: Bug report
+description: Report reproducible incorrect behavior or package validation problems.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove credentials, personal information, proprietary code, and confidential interview material before submitting.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Codex surface, operating system, and relevant version information.
+      placeholder: Codex desktop on Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Minimal anonymized input
+      description: Provide the smallest prompt or material that reproduces the issue.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional evidence
+      description: Sanitized output, validator logs, or screenshots.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I removed secrets, personal data, and confidential material.
+          required: true
+        - label: I searched existing issues for duplicates.
+          required: true

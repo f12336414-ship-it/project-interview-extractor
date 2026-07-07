@@ -1,0 +1,48 @@
+name: Feature request
+description: Propose a focused improvement to interview analysis or project maintenance.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What real interview-preparation problem is not handled well today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Describe observable behavior, not only an implementation preference.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Relevant mode
+      options:
+        - Quick mode
+        - Deep mode
+        - Mock interview mode
+        - Resume optimization mode
+        - Cross-cutting or maintenance
+    validations:
+      required: true
+  - type: textarea
+    id: evaluation
+    attributes:
+      label: Evaluation idea
+      description: Give an anonymized input and the behavior that would demonstrate success.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This proposal does not require fabricating candidate experience or metrics.
+          required: true
+        - label: I searched existing issues for similar proposals.
+          required: true

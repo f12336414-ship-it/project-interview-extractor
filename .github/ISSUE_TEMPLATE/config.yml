@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support and usage guidance
+    url: https://github.com/f12336414-ship-it/project-interview-extractor/blob/main/SUPPORT.md
+    about: Read support guidance before opening a usage question.
+  - name: Private security report
+    url: https://github.com/f12336414-ship-it/project-interview-extractor/security/advisories/new
+    about: Report vulnerabilities and exposed secrets privately.
