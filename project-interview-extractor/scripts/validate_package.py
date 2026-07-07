@@ -146,8 +146,8 @@ def check_references(skill_text: str) -> None:
 
 def check_evals() -> None:
     evals = sorted((ROOT / "evals").glob("*.md"))
-    if len(evals) < 5:
-        fail("at least five distinct evaluation cases are required")
+    if len(evals) < 7:
+        fail("at least seven distinct evaluation cases are required")
     combined = ""
     for path in evals:
         text = read_utf8(path)
@@ -161,6 +161,28 @@ def check_evals() -> None:
     for mode in ("快速模式", "深度模式", "模拟面试模式", "简历优化模式"):
         if mode not in combined:
             fail(f"eval coverage is missing {mode}")
+    for command in (
+        "$project-interview-extractor chat",
+        "$project-interview-extractor bank",
+    ):
+        if command not in combined:
+            fail(f"eval coverage is missing command: {command}")
+
+
+def check_command_protocol() -> None:
+    skill_text = read_utf8(SKILL)
+    protocol = read_utf8(ROOT / "references" / "command-protocol.md")
+    schema = read_utf8(ROOT / "references" / "question-bank-schema.md")
+    for reference in ("command-protocol.md", "question-bank-schema.md"):
+        if reference not in skill_text:
+            fail(f"SKILL.md must link command reference: {reference}")
+    for command in ("help", "chat", "bank", "analyze", "resume", "review", "export"):
+        heading = re.search(rf"^## {re.escape(command)}$", protocol, re.MULTILINE)
+        if f"`{command}`" not in skill_text or not heading:
+            fail(f"command is not fully documented: {command}")
+    for dimension in range(1, 18):
+        if not re.search(rf"^{dimension}\. ", schema, re.MULTILINE):
+            fail(f"question-bank schema is missing dimension {dimension}")
 
 
 def sum_first_table(section: str) -> int:
@@ -208,6 +230,7 @@ def main() -> int:
 
     check_references(skill_text)
     check_evals()
+    check_command_protocol()
     check_scoring()
 
     if ERRORS:

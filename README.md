@@ -55,17 +55,31 @@ Restart Codex after installation if the skill is not discovered immediately.
 
 ## Use
 
-Invoke the skill explicitly:
+Codex slash commands are built-in session controls. This project exposes portable skill subcommands through `$project-interview-extractor` instead of pretending to register a new slash command. You can also select the skill with `/skills`, then enter the subcommand and options.
+
+| Command | Purpose |
+|---|---|
+| `help` | Show commands, options, defaults, and examples |
+| `chat` | Run a realistic, adaptive mock interview one question at a time |
+| `bank` | Write an all-dimension question, follow-up, and answer handbook to Markdown |
+| `analyze` | Run quick or deep project analysis |
+| `resume` | Produce evidence-bounded resume content |
+| `review` | Review the candidate's latest answer |
+| `export` | Export the current session or report to Markdown |
+
+Run a realistic interview with feedback at the end:
 
 ```text
-Use $project-interview-extractor in deep mode to analyze this repository for a backend interview.
+$project-interview-extractor chat --role backend --level senior --rounds 12 --feedback end
 ```
 
-Chinese example:
+Generate a comprehensive developer study handbook:
 
 ```text
-使用 $project-interview-extractor 深度分析这个项目，帮我准备后端项目面试。
+$project-interview-extractor bank --role backend --level senior --coverage exhaustive --output docs/backend-interview-bank.md
 ```
+
+The `bank` command checks 17 dimensions, marks non-applicable areas with reasons, and writes project-specific questions, conservative answers, three-level follow-ups, risks, learning notes, and self-tests. “All dimensions” is a measurable coverage contract, not a claim to enumerate infinitely many phrasings.
 
 You can provide any combination of a README, source tree, resume description, architecture document, API or database schema, Git history, code snippets, or an oral project explanation.
 
@@ -97,7 +111,7 @@ No third-party Python package is required:
 python scripts/validate_repository.py
 ```
 
-The repository validator checks community files, workflows, metadata, UTF-8, Markdown structure, internal links, reference discoverability, evaluation coverage, and scoring totals. See [Evaluation](docs/EVALUATION.md) for the boundary between automated package checks and model-behavior review.
+The repository validator checks community files, workflows, metadata, UTF-8, Markdown structure, internal links, command documentation, 17-dimension question-bank coverage, evaluation coverage, and scoring totals. See [Evaluation](docs/EVALUATION.md) for the boundary between automated package checks and model-behavior review.
 
 ## Contributing and security
 

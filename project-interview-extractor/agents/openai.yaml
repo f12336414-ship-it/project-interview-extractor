@@ -1,4 +1,4 @@
 interface:
   display_name: "项目面试经验提取"
-  short_description: "把真实项目经验转化为可信、可追问、可复用的面试材料与训练方案"
-  default_prompt: "使用 $project-interview-extractor，把我的真实项目材料整理成可验证的面试问题、回答、简历亮点和 STAR 案例。"
+  short_description: "把真实项目转化为面试对练、全维度题库与可信简历材料"
+  default_prompt: "使用 $project-interview-extractor help 查看命令，或运行 chat 进行模拟面试、运行 bank 生成全维度问题与回答文档。"
