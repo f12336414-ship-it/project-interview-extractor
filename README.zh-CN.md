@@ -45,11 +45,33 @@ Copy-Item -Recurse -Force ".\project-interview-extractor\project-interview-extra
 
 ## 使用
 
+Codex 的斜杠命令是产品内置会话控制。本项目通过 `$project-interview-extractor` 提供跨 App、CLI 和 IDE 可移植的 Skill 子命令；也可以先用 `/skills` 选中 Skill，再输入子命令。
+
+| 命令 | 用途 |
+|---|---|
+| `help` | 显示命令、参数、默认值和示例 |
+| `chat` | 一次一题进行贴近真实面试的动态对练 |
+| `bank` | 把全维度问题、追问和回答写入 Markdown 学习文档 |
+| `analyze` | 快速或深度分析项目 |
+| `resume` | 生成证据边界清楚的简历内容 |
+| `review` | 评估候选人最近一次回答 |
+| `export` | 导出当前会话或报告 |
+
+进行真实模拟面试，结束后统一反馈：
+
 ```text
-使用 $project-interview-extractor 深度分析这个项目，帮我准备后端项目面试。
+$project-interview-extractor chat --role backend --level senior --rounds 12 --feedback end
+```
+
+生成供开发者系统学习的全维度题库文档：
+
+```text
+$project-interview-extractor bank --role backend --level senior --coverage exhaustive --output docs/backend-interview-bank.md
 ```
 
 可以提供 README、源码目录、简历描述、架构文档、接口或数据库文档、Git 记录、核心代码或口述背景。材料不足时，Skill 会继续基于已有证据分析，同时明确标记待确认信息。
+
+`bank` 会检查 17 个维度，对不适用维度给出理由，并写入项目化问题、保守版回答、三层追问、风险、学习导读和自测清单。“所有维度”是可验收的覆盖标准，而不是声称穷举无限种问法。
 
 ## 验证
 

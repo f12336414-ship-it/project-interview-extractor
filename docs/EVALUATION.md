@@ -23,7 +23,7 @@ The repository validator delegates to the installable-skill validator and checks
 - UI metadata and default invocation;
 - UTF-8, final newlines, whitespace, heading progression, and balanced fences;
 - local links and direct reference discoverability;
-- evaluation-case structure and four-mode coverage;
+- evaluation-case structure, four-mode coverage, and `chat`/`bank` command coverage;
 - scoring tables summing to 100;
 - forbidden placeholders and generated artifacts covered by repository policy.
 
@@ -37,7 +37,9 @@ Files under `project-interview-extractor/evals/` define anonymized prompts, obse
 - a detailed backend concurrency case;
 - adaptive frontend mock-interview follow-up;
 - sensitive material handling;
-- AI-project resume optimization.
+- AI-project resume optimization;
+- realistic `chat` command behavior;
+- all-dimension `bank` document export.
 
 For a behavior-changing pull request, run the relevant prompt in a fresh context with the skill enabled. Record:
 
