@@ -60,10 +60,10 @@ TEXT_NAMES = {
 }
 
 ALLOWED_ACTIONS = {
-    "actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10",
-    "actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
-    "github/codeql-action/init@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a",
-    "github/codeql-action/analyze@54f647b7e1bb85c95cddabcd46b0c578ec92bc1a",
+    "actions/checkout",
+    "actions/setup-python",
+    "github/codeql-action/init",
+    "github/codeql-action/analyze",
 }
 
 
@@ -131,8 +131,11 @@ def check_workflows() -> None:
         if "pull_request_target:" in text:
             fail(f"pull_request_target is not allowed: {relative(path)}")
         for action in re.findall(r"^\s*uses:\s*([^\s#]+)", text, re.MULTILINE):
-            if action not in ALLOWED_ACTIONS:
-                fail(f"unreviewed or unpinned GitHub Action in {relative(path)}: {action}")
+            coordinate, separator, revision = action.rpartition("@")
+            if coordinate not in ALLOWED_ACTIONS:
+                fail(f"unreviewed GitHub Action in {relative(path)}: {coordinate}")
+            if not separator or not re.fullmatch(r"[0-9a-f]{40}", revision):
+                fail(f"GitHub Action must use a full commit SHA in {relative(path)}: {action}")
 
 
 def check_repository_contract() -> None:
